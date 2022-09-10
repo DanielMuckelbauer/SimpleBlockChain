@@ -23,7 +23,7 @@ public class Block
 
     public void Mine()
     {
-        while(Hash[..2] != "0000")
+        while(Hash[..2] != "00")
         {
             ++_nonce;
             Hash = CreateHash();
