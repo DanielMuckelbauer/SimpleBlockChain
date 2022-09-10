@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace SimpleBlockChain.BlockChain.CLI;
+namespace SimpleBlockChain.CLI;
 
 public class Prompter : IPrompter
 {

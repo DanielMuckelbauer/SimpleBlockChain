@@ -1,4 +1,4 @@
-﻿namespace SimpleBlockChain.BlockChain.CLI;
+﻿namespace SimpleBlockChain.CLI;
 
 public enum Actions
 {

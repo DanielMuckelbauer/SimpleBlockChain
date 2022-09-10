@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleBlockChain.BlockChain.CLI;
+using SimpleBlockChain.BlockChain;
+using SimpleBlockChain.BlockChain.Interfaces;
+using SimpleBlockChain.CLI;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>

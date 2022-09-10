@@ -1,4 +1,7 @@
-﻿using SimpleBlockChain.BlockChain.CLI;
+﻿using SimpleBlockChain.BlockChain.Interfaces;
+using SimpleBlockChain.CLI;
+
+namespace SimpleBlockChain.BlockChain;
 
 public class BlockChainApp : IBlockChainApp
 {
@@ -21,7 +24,7 @@ public class BlockChainApp : IBlockChainApp
             Actions.PrintBlockChain => expr,
             Actions.Quit => expr,
             _ => throw new ArgumentOutOfRangeException()
-        }
+        };
 
 
 
