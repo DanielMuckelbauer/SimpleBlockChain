@@ -2,7 +2,8 @@
 
 public enum Actions
 {
-    AddTransAction,
+    AddTransaction,
     MineBlock,
-    PrintBlockChain
+    PrintBlockChain,
+    Quit
 }

@@ -2,5 +2,5 @@
 
 public interface IPrompter
 {
-    void Prompt();
+    Actions Prompt();
 }
