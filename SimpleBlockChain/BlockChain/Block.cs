@@ -5,8 +5,8 @@ namespace SimpleBlockChain.BlockChain;
 
 public class Block
 {
-    public string Hash { get; set; }
-    public string PreviousHash { get; set; }
+    public string Hash { get; private set; }
+    public string PreviousHash { get; }
 
     private long _nonce;
     private readonly DateTime _timeStamp;
@@ -23,7 +23,7 @@ public class Block
 
     public void Mine()
     {
-        while(Hash[..2] != "00")
+        while(Hash[..2] != "0000")
         {
             ++_nonce;
             Hash = CreateHash();
