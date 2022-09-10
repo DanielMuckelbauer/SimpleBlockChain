@@ -1,45 +1,18 @@
-﻿using SimpleBlockChain.BlockChain;
-using Spectre.Console;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SimpleBlockChain.BlockChain;
+using SimpleBlockChain.BlockChain.Interfaces;
+using SimpleBlockChain.CLI;
 
-AnsiConsole.Markup("Simple Block Chain\n");
-
-var blockChain = new BlockChain();
-
-blockChain.AddTransaction(111);
-blockChain.AddTransaction(222);
-blockChain.CreateBlock();
-
-blockChain.AddTransaction(333);
-blockChain.AddTransaction(444);
-blockChain.CreateBlock();
-
-CreateTree(blockChain);
-
-void CreateTree(BlockChain chain)
-{
-    var tree = new Tree("Blockchain");
-    foreach (var block in chain.Chain)
-    {
-        var blockNode = CreateBlockNode(tree, block);
-        AddTransactionNode(blockNode, block);
-    }
-    AnsiConsole.Write(tree);
-    Console.ReadLine();
-}
-
-TreeNode CreateBlockNode(Tree tree, Block block)
-{
-    var blockNode = tree.AddNode("Block");
-    blockNode.AddNode($"Previous Hash: {block.PreviousHash}");
-    blockNode.AddNode($"Hash: {block.Hash}");
-    return blockNode;
-}
-
-void AddTransactionNode(TreeNode blockNode, Block block)
-{
-    var transactionNode = blockNode.AddNode("Transactions");
-    foreach (var transaction in block.Transactions)
-    {
-        transactionNode.AddNode(transaction.Data.ToString());
-    }
-}
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((_, services) =>
+        services
+            .AddScoped<IBlockChainApp, BlockChainApp>()
+            .AddScoped<IPrompter, Prompter>()
+            .AddScoped<ITransactionAdder, TransactionAdder>()
+            .AddScoped<IBlockMiner, BlockMiner>()
+            .AddScoped<IPrinter, Printer>())
+    .Build();
+using var serviceScope = host.Services.CreateScope();
+var serviceProvider = serviceScope.ServiceProvider;
+serviceProvider.GetRequiredService<IBlockChainApp>().Run();
