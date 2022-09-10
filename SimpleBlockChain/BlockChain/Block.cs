@@ -14,9 +14,9 @@ public class Block
 
     public Block(DateTime timeStamp, List<Transaction> transactions, string previousHash)
     {
+        _nonce = 0;
         _timeStamp = timeStamp;
         Transactions = transactions;
-        _nonce = 0;
         PreviousHash = previousHash;
         Hash = CreateHash();
     }

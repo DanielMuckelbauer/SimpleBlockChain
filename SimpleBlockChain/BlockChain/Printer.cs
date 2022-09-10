@@ -35,7 +35,7 @@ internal class Printer : IPrinter
             var transactionNode = blockNode.AddNode("Transactions");
             foreach (var transaction in block.Transactions)
             {
-                transactionNode.AddNode(transaction.Data.ToString());
+                transactionNode.AddNode(transaction.Data);
             }
         }
     }

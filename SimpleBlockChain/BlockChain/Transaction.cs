@@ -2,8 +2,8 @@
 
 public class Transaction
 {
-    public int Data { get; set; }
+    public string Data { get; }
 
-    public Transaction(int data)
+    public Transaction(string data)
         => Data = data;
 }

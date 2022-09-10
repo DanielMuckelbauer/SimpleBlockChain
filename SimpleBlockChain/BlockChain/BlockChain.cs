@@ -8,7 +8,7 @@ public class BlockChain
     public BlockChain()
         => Chain = new() { GenerateGenesisBlock() };
 
-    public void AddTransaction(int data)
+    public void AddTransaction(string data)
         => _pendingTransactions.Add(new(data));
 
     public void CreateBlock()
