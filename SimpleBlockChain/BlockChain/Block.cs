@@ -10,12 +10,12 @@ public class Block
 
     private long _nonce;
     private DateTime _timeStamp;
-    private List<Transaction> _transactions;
+    public readonly List<Transaction> Transactions;
 
     public Block(DateTime timeStamp, List<Transaction> transactions, string previousHash = "")
     {
         _timeStamp = timeStamp;
-        _transactions = transactions;
+        Transactions = transactions;
         _nonce = 0;
         PreviousHash = previousHash;
         Hash = CreateHash();
@@ -34,7 +34,7 @@ public class Block
     private string CreateHash()
     {
         using var sha256 = SHA256.Create();
-        var hashInput = PreviousHash + _timeStamp + _transactions + _nonce;
+        var hashInput = PreviousHash + _timeStamp + Transactions + _nonce;
         var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(hashInput));
         return Encoding.Default.GetString(hash);
     }

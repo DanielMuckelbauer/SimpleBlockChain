@@ -3,10 +3,10 @@
 public class BlockChain
 {
     private List<Transaction> _pendingTransactions = new();
-    private List<Block> _chain;
+    public readonly List<Block> Chain;
 
     public BlockChain()
-        => _chain = new() { GenerateGenesisBlock() };
+        => Chain = new() { GenerateGenesisBlock() };
 
     public void AddTransaction(int data)
         => _pendingTransactions.Add(new(data));
@@ -15,8 +15,9 @@ public class BlockChain
     {
         var block = new Block(DateTime.Now, _pendingTransactions);
         block.Mine();
-        block.PreviousHash = _chain.Last().Hash;
-        _chain.Add(block);
+        block.PreviousHash = Chain.Last().Hash;
+        Chain.Add(block);
+        _pendingTransactions = new();
     }
 
     private static Block GenerateGenesisBlock()
