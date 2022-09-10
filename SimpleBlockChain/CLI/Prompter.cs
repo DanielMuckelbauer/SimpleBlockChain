@@ -4,7 +4,7 @@ namespace SimpleBlockChain.CLI;
 
 public class Prompter : IPrompter
 {
-    public Actions Prompt()
+    public CliCommand Prompt()
     {
         var input = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title("What do you want to do?")
@@ -13,13 +13,13 @@ public class Prompter : IPrompter
         return MapInput(input);
     }
 
-    private static Actions MapInput(string input)
+    private static CliCommand MapInput(string input)
         => input switch
         {
-            "Add Transaction" => Actions.AddTransaction,
-            "Mine Block" => Actions.MineBlock,
-            "Print Chain" => Actions.PrintBlockChain,
-            "Quit" => Actions.Quit,
+            "Add Transaction" => CliCommand.AddTransaction,
+            "Mine Block" => CliCommand.MineBlock,
+            "Print Chain" => CliCommand.PrintBlockChain,
+            "Quit" => CliCommand.Quit,
             _ => throw new ArgumentOutOfRangeException(nameof(input), input, null),
         };
 }

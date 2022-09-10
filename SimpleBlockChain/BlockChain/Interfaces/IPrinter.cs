@@ -1,5 +1,6 @@
 ﻿namespace SimpleBlockChain.BlockChain.Interfaces;
 
-internal interface IPrinter
+public interface IPrinter
 {
+    void Print(BlockChain blockChain);
 }

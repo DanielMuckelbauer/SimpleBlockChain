@@ -2,6 +2,10 @@
 
 namespace SimpleBlockChain.BlockChain;
 
-class TransactionAdder : ITransactionAdder
+internal class TransactionAdder : ITransactionAdder
 {
+    public void Add(BlockChain blockChain)
+    {
+        throw new NotImplementedException();
+    }
 }

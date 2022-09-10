@@ -2,6 +2,10 @@
 
 namespace SimpleBlockChain.BlockChain;
 
-class Printer : IPrinter
+internal class Printer : IPrinter
 {
+    public void Print(BlockChain blockChain)
+    {
+        throw new NotImplementedException();
+    }
 }

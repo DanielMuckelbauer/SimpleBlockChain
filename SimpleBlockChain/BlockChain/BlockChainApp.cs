@@ -1,4 +1,5 @@
-﻿using SimpleBlockChain.BlockChain.Interfaces;
+﻿using System.Xml;
+using SimpleBlockChain.BlockChain.Interfaces;
 using SimpleBlockChain.CLI;
 
 namespace SimpleBlockChain.BlockChain;
@@ -6,27 +7,28 @@ namespace SimpleBlockChain.BlockChain;
 public class BlockChainApp : IBlockChainApp
 {
     private readonly IPrompter _prompter;
-    private readonly ITransactionAdder _adder;
+    private readonly ITransactionAdder _transactionAdder;
     private readonly IBlockMiner _miner;
     private readonly IPrinter _printer;
 
-    public BlockChainApp(IPrompter prompter)
+    private bool _quit;
+
+    public BlockChainApp(IPrompter prompter, ITransactionAdder transactionAdder, IBlockMiner miner, IPrinter printer)
     {
         _prompter = prompter;
+        _transactionAdder = transactionAdder;
+        _miner = miner;
+        _printer = printer;
     }
 
     public void Run()
     {
-        _prompter.Prompt() switch
+        var commands = CreateCommands();
+
+        while (!_quit)
         {
-            Actions.AddTransaction => _transactionsAdder.AddTransaction(),
-            Actions.MineBlock => expr,
-            Actions.PrintBlockChain => expr,
-            Actions.Quit => expr,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
-
+            commands[_prompter.Prompt()]();
+        }
 
         // AnsiConsole.Markup("Simple Block Chain\n");
         //
@@ -63,5 +65,17 @@ public class BlockChainApp : IBlockChainApp
         //         transactionNode.AddNode(transaction.Data.ToString());
         //     }
         // }
+    }
+
+    private Dictionary<CliCommand, Action> CreateCommands()
+    {
+        var blockChain = new BlockChain();
+        return new()
+        {
+            { CliCommand.AddTransaction, () => _transactionAdder.Add(blockChain) },
+            { CliCommand.MineBlock, () => _miner.Mine(blockChain) },
+            { CliCommand.PrintBlockChain, () => _printer.Print(blockChain) },
+            { CliCommand.Quit, () => _quit = true },
+        };
     }
 }

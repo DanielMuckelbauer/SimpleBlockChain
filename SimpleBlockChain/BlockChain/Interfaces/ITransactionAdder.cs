@@ -1,5 +1,6 @@
 ﻿namespace SimpleBlockChain.BlockChain.Interfaces;
 
-internal interface ITransactionAdder
+public interface ITransactionAdder
 {
+    void Add(BlockChain blockChain);
 }

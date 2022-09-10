@@ -2,6 +2,10 @@
 
 namespace SimpleBlockChain.BlockChain;
 
-class BlockMiner : IBlockMiner
+internal class BlockMiner : IBlockMiner
 {
+    public void Mine(BlockChain blockChain)
+    {
+        throw new NotImplementedException();
+    }
 }

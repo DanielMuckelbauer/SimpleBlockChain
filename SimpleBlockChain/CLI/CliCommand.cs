@@ -1,6 +1,6 @@
 ﻿namespace SimpleBlockChain.CLI;
 
-public enum Actions
+public enum CliCommand
 {
     AddTransaction,
     MineBlock,

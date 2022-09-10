@@ -2,5 +2,5 @@
 
 public interface IPrompter
 {
-    Actions Prompt();
+    CliCommand Prompt();
 }

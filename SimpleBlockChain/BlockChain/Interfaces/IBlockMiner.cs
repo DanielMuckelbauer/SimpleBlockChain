@@ -1,5 +1,6 @@
 ﻿namespace SimpleBlockChain.BlockChain.Interfaces;
 
-internal interface IBlockMiner
+public interface IBlockMiner
 {
+    void Mine(BlockChain blockChain);
 }
