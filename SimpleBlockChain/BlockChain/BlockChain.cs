@@ -13,9 +13,8 @@ public class BlockChain
 
     public void CreateBlock()
     {
-        var block = new Block(DateTime.Now, _pendingTransactions);
+        var block = new Block(DateTime.Now, _pendingTransactions, Chain.Last().Hash);
         block.Mine();
-        block.PreviousHash = Chain.Last().Hash;
         Chain.Add(block);
         _pendingTransactions = new();
     }

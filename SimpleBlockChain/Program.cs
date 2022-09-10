@@ -1,16 +1,16 @@
 ﻿using SimpleBlockChain.BlockChain;
 using Spectre.Console;
 
-AnsiConsole.Markup("Simple Block Chain");
+AnsiConsole.Markup("Simple Block Chain\n");
 
 var blockChain = new BlockChain();
 
-blockChain.AddTransaction(1);
-blockChain.AddTransaction(2);
+blockChain.AddTransaction(111);
+blockChain.AddTransaction(222);
 blockChain.CreateBlock();
 
-blockChain.AddTransaction(3);
-blockChain.AddTransaction(4);
+blockChain.AddTransaction(333);
+blockChain.AddTransaction(444);
 blockChain.CreateBlock();
 
 CreateTree(blockChain);
@@ -30,8 +30,8 @@ void CreateTree(BlockChain chain)
 TreeNode CreateBlockNode(Tree tree, Block block)
 {
     var blockNode = tree.AddNode("Block");
-    blockNode.AddNode($"Hash: {block.Hash}");
     blockNode.AddNode($"Previous Hash: {block.PreviousHash}");
+    blockNode.AddNode($"Hash: {block.Hash}");
     return blockNode;
 }
 

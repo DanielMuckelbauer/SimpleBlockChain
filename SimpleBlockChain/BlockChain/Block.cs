@@ -9,10 +9,10 @@ public class Block
     public string PreviousHash { get; set; }
 
     private long _nonce;
-    private DateTime _timeStamp;
+    private readonly DateTime _timeStamp;
     public readonly List<Transaction> Transactions;
 
-    public Block(DateTime timeStamp, List<Transaction> transactions, string previousHash = "")
+    public Block(DateTime timeStamp, List<Transaction> transactions, string previousHash)
     {
         _timeStamp = timeStamp;
         Transactions = transactions;
@@ -36,6 +36,6 @@ public class Block
         using var sha256 = SHA256.Create();
         var hashInput = PreviousHash + _timeStamp + Transactions + _nonce;
         var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(hashInput));
-        return Encoding.Default.GetString(hash);
+        return Convert.ToHexString(hash);
     }
 }
