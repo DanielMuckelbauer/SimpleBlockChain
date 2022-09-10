@@ -6,7 +6,10 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
         services
             .AddScoped<IBlockChainApp, BlockChainApp>()
-            .AddScoped<IPrompter, Prompter>())
+            .AddScoped<IPrompter, Prompter>()
+            .AddScoped<ITransactionAdder, TransactionAdder>()
+            .AddScoped<IBlockMiner, BlockMiner>()
+            .AddScoped<IPrinter, Printer>())
     .Build();
 using var serviceScope = host.Services.CreateScope();
 var serviceProvider = serviceScope.ServiceProvider;

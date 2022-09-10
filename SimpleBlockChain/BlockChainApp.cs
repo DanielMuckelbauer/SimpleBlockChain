@@ -3,6 +3,9 @@
 public class BlockChainApp : IBlockChainApp
 {
     private readonly IPrompter _prompter;
+    private readonly ITransactionAdder _adder;
+    private readonly IBlockMiner _miner;
+    private readonly IPrinter _printer;
 
     public BlockChainApp(IPrompter prompter)
     {
@@ -11,7 +14,17 @@ public class BlockChainApp : IBlockChainApp
 
     public void Run()
     {
-        Console.WriteLine(_prompter.Prompt());
+        _prompter.Prompt() switch
+        {
+            Actions.AddTransaction => _transactionsAdder.AddTransaction(),
+            Actions.MineBlock => expr,
+            Actions.PrintBlockChain => expr,
+            Actions.Quit => expr,
+            _ => throw new ArgumentOutOfRangeException()
+        }
+
+
+
         // AnsiConsole.Markup("Simple Block Chain\n");
         //
         // var blockChain = new BlockChain();
