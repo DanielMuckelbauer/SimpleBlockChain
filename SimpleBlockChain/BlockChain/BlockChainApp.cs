@@ -1,5 +1,4 @@
-﻿using System.Xml;
-using SimpleBlockChain.BlockChain.Interfaces;
+﻿using SimpleBlockChain.BlockChain.Interfaces;
 using SimpleBlockChain.CLI;
 
 namespace SimpleBlockChain.BlockChain;
@@ -24,7 +23,6 @@ public class BlockChainApp : IBlockChainApp
     public void Run()
     {
         var commands = CreateCommands();
-
         while (!_quit)
         {
             commands[_prompter.Prompt()]();
